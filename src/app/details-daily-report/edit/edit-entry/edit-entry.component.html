@@ -1,0 +1,81 @@
+<div class="modal-header bg-secondary text-white">
+    <h4 id="modal-basic-title">Editar Entrada</h4>
+</div>
+<div class="modal-body">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="editForm">
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="hours" class="col-form-label col-sm-2 text-right">Horas:</label>
+            <div class="col-sm-5">
+                <input type="text" formControlName="hours" class="form-control" />
+                <div *ngIf="editFormData.hours.invalid && (editFormData.hours.dirty || editFormData.hours.touched)"
+                    class="alert-danger">
+                    <span>Introduzca un valor de horas.</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="factor" class="col-form-label col-sm-2 text-right">Factor:</label>
+            <div class="col-sm-5">
+                <select
+                type="text"
+                formControlName="factor"
+                class="form-control"
+                required
+              >
+                <option value="100" selected>100%</option>
+                <option value="50">50%</option>
+                <option value="75">75%</option>
+                <option value="25">25%</option>
+              </select>
+                <div *ngIf="editFormData.factor.invalid && (editFormData.factor.dirty || editFormData.factor.touched)"
+                    class="alert-danger">
+                    <span>First name is required!</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="night" class="col-form-label col-sm-2 text-right">Horario nocturno:</label>
+            <div class="col-sm-5">
+                <input
+                type="checkbox"
+                formControlName="night"
+              />
+                <div *ngIf="editFormData.night.invalid && (editFormData.night.dirty || editFormData.night.touched)"
+                    class="alert-danger">
+                    <span>First name is required!</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="height" class="col-form-label col-sm-2 text-right">En altura:</label>
+            <div class="col-sm-5">
+                <input
+                type="checkbox"
+                formControlName="height"
+              />
+                <div *ngIf="editFormData.height.invalid && (editFormData.height.dirty || editFormData.height.touched)"
+                    class="alert-danger">
+                    <span>First name is required!</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row d-flex justify-content-center align-items-center">
+            <label for="description" class="col-form-label col-sm-2 text-right">Descripción:</label>
+            <div class="col-sm-5">
+                <input type="text" formControlName="description" class="form-control" />
+                <div *ngIf="editFormData.description.invalid && (editFormData.description.dirty || editFormData.description.touched)"
+                    class="alert-danger">
+                    <span>First name is required!</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="isLoading  || !editForm.valid" class="btn btn-secondary mr-2">Actualizar</button>
+        </div>
+    </form>
+    <div class="modal-footer row d-flex justify-content-center align-items-center">
+        <button [disabled]="isLoading" class="btn btn-primary mr-2" (click)="modal.close('Cancel')">Cancelar</button>
+        <div></div>
+        <button [disabled]="isLoading" class="btn btn-danger mr-2" (click)="deleteEntry()">Eliminar</button>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+
+<div *ngIf="isLoggedIn">
+  <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="!isLoggedIn" class="pt-5">
+  <app-login></app-login>
+</div>
+<!--<mat-accordion>
+  <mat-expansion-panel *ngFor="let item of items">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{item.name}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div [innerHTML]="item.html"></div>
+    <a mat-button [href]="item.url">Go to full article</a>
+  </mat-expansion-panel>
+ </mat-accordion> -->

@@ -1,0 +1,14 @@
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+.mat-drawer {
+    overflow-y: unset!important;
+}
+ 
+.mat-tab-header {
+    z-index: 9999;
+    position: sticky !important;
+    top: 114px;
+    background-color: white !important;
+}

@@ -1,0 +1,18 @@
+input{
+    margin-top: 10px !important;
+}
+
+button{
+    margin-top: 10px !important;
+}
+
+.form-control
+{
+  background-color: #fafafa;
+  padding-left:10px !important;
+  padding-right:10px !important;
+}
+
+canvas{
+    width:100% !important;
+}

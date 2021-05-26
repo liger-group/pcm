@@ -1,0 +1,147 @@
+<div class="container-fluid flex-grow-1 container-p-y">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="javascript:void(0)">Inicio</a>
+    </li>
+    <li class="breadcrumb-item active">Resumen</li>
+  </ol>
+  <div class="card d-flex w-100 mb-4">
+    <div class="d-flex col-sm-6 col-md-4 col-lg-6 align-items-center">
+      <div class="card-body media align-items-center text-dark">
+        <i class="lnr lnr-earth display-4 d-block text-primary"></i>
+        <span class="media-body d-block ml-3"
+          ><span class="text-big">
+            <small class="text-muted">Buen día {{ username }}</small
+            ><br />
+            Hoy es
+            <span class="mr-1 text-primary"
+              >{{ day }} de {{ month }} de {{ year }}</span
+            ></span
+          >
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <h6 class="card-header">Partes Diarios</h6>
+    <div class="card-body">
+      <div *ngIf="isLoading" class="d-flex justify-content-center w-100">
+        <div class="lds-ring d-flex justify-content-center">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <div
+        class="alert alert-primary alert-dismissible fade show"
+        *ngIf="reports.length == 0 && !hasErrors && !isLoading"
+      >
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        No hay partes diarios para el día de hoy!
+      </div>
+
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="hasErrors && !isLoading"
+      >
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        Ha ocurrido un error al mostrar los partes diarios. Por favor, revisa tu
+        conexión.
+      </div>
+
+      <!--<div id="accordion">
+          <div class="member-container mb-3" *ngFor="let report of reports; let i = index">
+            <div heading id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link w-100 member-name" style=" text-align: left  !important;" data-toggle="collapse" attr.data-target="#a{{i}}" aria-expanded="true" aria-controls="collapseOne">
+                  <span class="badge badge-dot badge-default"></span> {{ report.customer.name }} 
+                  <a style="float:right;" class="badge badge-primary member-category">OST: {{ report.ost }}</a>
+                  <a style="float:right;" class="badge badge-info member-category">OSE: {{ report.ose }}</a>
+                </button>
+              </h5>
+            </div>
+        
+            <div id="a{{i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="divider w-auto mx-2"></div>
+              <div class="card-body p-2 pl-3 member-data">
+                {{ report.detail }}<br><br>
+                <div class="btn-group">
+                  <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Small button</button>
+                  <div class="dropdown-menu">
+                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="javascript:void(0)">Separated link</a>
+                  </div>
+              </div>
+                  <button  type="button" class="btn icon-btn h-auto btn-outline-success">
+                        <span class="ion-md-bulb"></span>
+                    </button>
+              </div>-->
+
+      <div id="accordion">
+        <div
+          class="lg-accordion-container mb-3"
+          *ngFor="let report of reports; let i = index"
+        >
+          <div heading id="headingOne">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link w-100 lg-accordion-name"
+                style="text-align: left !important"
+                data-toggle="collapse"
+                attr.data-target="#a{{ i }}"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                #{{ ("0000" + report.id).slice(-5) }} -
+                {{ report.customer.name }}
+                <a
+                  style="float: right"
+                  class="badge badge-pill badge-secondary lg-accordion-category"
+                  >ABIERTO</a
+                >
+              </button>
+            </h5>
+          </div>
+
+          <div
+            id="a{{ i }}"
+            class="collapse lg-accordion-body"
+            aria-labelledby="headingOne"
+            data-parent="#accordion"
+          >
+            <div class="lg-accordion-data p-2 pl-3">
+              <p class="mb-0"><b>OST: </b>{{ report.ost }}</p>
+              <p class="mb-0"><b>OSE: </b>{{ report.ose }}</p>
+              <p class="mb-n1 mt-1"><b>Detalle: </b></p>
+              {{ report.detail }}<br /><br />
+              <a
+                type="button"
+                [routerLink]="['/details_report']"
+                [queryParams]="{ id: report.id }"
+                class="btn btn-xs btn-primary mr-1"
+                >Ver</a
+              >
+              <!--<a type="button" class="btn btn-xs btn-secondary">Editar</a>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="card-footer">
+          <button type="button" class="btn btn-primary" routerLink="/new_report">Nuevo Parte</button>
+    </div>
+    -->
+  </div>
+</div>
+
+<div *ngIf="hasRoleManager" class="fixed-button active">
+  <button type="button" class="btn btn-primary" routerLink="/new_report">
+    <i class="feather icon-plus"></i> CREAR PARTE
+  </button>
+</div>
